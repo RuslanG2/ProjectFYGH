@@ -311,3 +311,23 @@ public class Program extends JFrame{
 		enter.transferFocus(); 
 		enter.grabFocus();	
 	}
+	public static boolean isValidInput(JTextField jtxt, String description) {
+        JDialog D = new JDialog();
+        if (jtxt.getText().trim().length() > 0) {
+            try {
+                 double num = Double.parseDouble(jtxt.getText().replace(',','.')); //попытка преобразовать текст в целое число      
+                return true;
+            } catch (NumberFormatException e) {
+                jtxt.requestFocus();
+                jtxt.setText("");
+                JOptionPane.showMessageDialog(D, "Вы должны ввести число", "Ошибка", JOptionPane.WARNING_MESSAGE);
+                return false;
+            }
+        } else {
+            JOptionPane.showMessageDialog(D, "Введите " + description, "Ошибка", JOptionPane.WARNING_MESSAGE);
+            jtxt.requestFocus();
+            jtxt.selectAll();
+            return false;
+        }
+    }	
+}
