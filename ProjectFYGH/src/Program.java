@@ -136,94 +136,94 @@ public class Program extends JFrame{
 		rad13.setEnabled(false);
 		rad13.setSelected(true);
 		rad13.addActionListener(new ActionListener()
-		  { public void actionPerformed(ActionEvent e)
-          {
-      		rad15.setSelected(false);
-      		rad30.setSelected(false);
-      		info.setText("<html>13% для резидента</html>");
-      		int_rad=13;
-      		rad13.setEnabled(false);
-      		rad15.setEnabled(true);
-      		rad30.setEnabled(true);
-          }
-      });
+        { public void actionPerformed(ActionEvent e)
+            {
+        		rad15.setSelected(false);
+        		rad30.setSelected(false);
+        		info.setText("<html>13% для резидента</html>");
+        		int_rad=13;
+        		rad13.setEnabled(false);
+        		rad15.setEnabled(true);
+        		rad30.setEnabled(true);
+            }
+        });
 		
 		rad15.addActionListener(new ActionListener()
-      { public void actionPerformed(ActionEvent e)
-          {
-  			rad13.setSelected(false);
-  			rad30.setSelected(false);
-  			info.setText("<html>15% для иностранца не имеющего особого статуса, но являющегося резидентом РФ</html>");
-  			int_rad=15;
-  			rad13.setEnabled(true);
-      		rad15.setEnabled(false);
-      		rad30.setEnabled(true);
-          }
-      });
+        { public void actionPerformed(ActionEvent e)
+            {
+    			rad13.setSelected(false);
+    			rad30.setSelected(false);
+    			info.setText("<html>15% для иностранца не имеющего особого статуса, но являющегося резидентом РФ</html>");
+    			int_rad=15;
+    			rad13.setEnabled(true);
+        		rad15.setEnabled(false);
+        		rad30.setEnabled(true);
+            }
+        });
 		
 		rad30.addActionListener(new ActionListener()
-      { public void actionPerformed(ActionEvent e)
-          {
-  			rad13.setSelected(false);
-  			rad15.setSelected(false);
-  			info.setText("<html>30% для иностранца не являющимся резидентом РФ</html>");
-  			int_rad=30;
-  			rad13.setEnabled(true);
-      		rad15.setEnabled(true);
-      		rad30.setEnabled(false);
-          }
-      });
+        { public void actionPerformed(ActionEvent e)
+            {
+    			rad13.setSelected(false);
+    			rad15.setSelected(false);
+    			info.setText("<html>30% для иностранца не являющимся резидентом РФ</html>");
+    			int_rad=30;
+    			rad13.setEnabled(true);
+        		rad15.setEnabled(true);
+        		rad30.setEnabled(false);
+            }
+        });
 		
 		liv.setSelected(true);
 		liv.setEnabled(false);
 		liv.addActionListener(new ActionListener()
-      { public void actionPerformed(ActionEvent e)
-          {
-  			unliv.setSelected(false);
-  			liv.setEnabled(false);
-  			unliv.setEnabled(true);
-  			rad13.setEnabled(false);
-  			rad15.setEnabled(true);
-  			rad30.setEnabled(true);
-  			rad13.setSelected(true);
-  			rad15.setSelected(false);
-  			rad30.setSelected(false);
-  			info.setText("<html>13% для резидента</html>");
-      		int_rad=13;
-          }
-      });
+        { public void actionPerformed(ActionEvent e)
+            {
+    			unliv.setSelected(false);
+    			liv.setEnabled(false);
+    			unliv.setEnabled(true);
+    			rad13.setEnabled(false);
+    			rad15.setEnabled(true);
+    			rad30.setEnabled(true);
+    			rad13.setSelected(true);
+    			rad15.setSelected(false);
+    			rad30.setSelected(false);
+    			info.setText("<html>13% для резидента</html>");
+        		int_rad=13;
+            }
+        });
 		
 		unliv.addActionListener(new ActionListener()
-      { public void actionPerformed(ActionEvent e)
-          {
-  			liv.setSelected(false);
-  			liv.setEnabled(true);
-  			unliv.setEnabled(false);
-  			rad13.setEnabled(false);
-  			rad15.setEnabled(false);
-  			rad30.setEnabled(false);
-  			int_rad=6;
-  			info.setText("<html>6% для нежилого помещения</html>");
-          }
-      });
+        { public void actionPerformed(ActionEvent e)
+            {
+    			liv.setSelected(false);
+    			liv.setEnabled(true);
+    			unliv.setEnabled(false);
+    			rad13.setEnabled(false);
+    			rad15.setEnabled(false);
+    			rad30.setEnabled(false);
+    			int_rad=6;
+    			info.setText("<html>6% для нежилого помещения</html>");
+            }
+        });
 		
 		String optiont = ("Кол-во просроченных дней");
 		option.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (optionp) {
 					optionp=false;
-      			dfield.setFocusable(true);
-      			dfield.setText(optiont);
-      			dfield.setBackground(Color.WHITE);
-      			dfield.setFont(font1);
+        			dfield.setFocusable(true);
+        			dfield.setText(optiont);
+        			dfield.setBackground(Color.WHITE);
+        			dfield.setFont(font1);
 				} else {
 					optionp=true;
-      			dfield.setFocusable(false);
-      			dfield.setText("");
-      			dfield.setBackground(new Color(238, 238, 238));
+        			dfield.setFocusable(false);
+        			dfield.setText("");
+        			dfield.setBackground(new Color(238, 238, 238));
 				}
-          }
-      });
+            }
+        });
 		
 		dfield.addFocusListener(new FocusAdapter() {
 	        @Override
@@ -311,6 +311,7 @@ public class Program extends JFrame{
 		enter.transferFocus(); 
 		enter.grabFocus();	
 	}
+	
 	public static boolean isValidInput(JTextField jtxt, String description) {
         JDialog D = new JDialog();
         if (jtxt.getText().trim().length() > 0) {
