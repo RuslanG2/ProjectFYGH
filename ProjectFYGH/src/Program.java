@@ -136,3 +136,178 @@ public class Program extends JFrame{
 		rad13.setEnabled(false);
 		rad13.setSelected(true);
 		rad13.addActionListener(new ActionListener()
+		  { public void actionPerformed(ActionEvent e)
+          {
+      		rad15.setSelected(false);
+      		rad30.setSelected(false);
+      		info.setText("<html>13% для резидента</html>");
+      		int_rad=13;
+      		rad13.setEnabled(false);
+      		rad15.setEnabled(true);
+      		rad30.setEnabled(true);
+          }
+      });
+		
+		rad15.addActionListener(new ActionListener()
+      { public void actionPerformed(ActionEvent e)
+          {
+  			rad13.setSelected(false);
+  			rad30.setSelected(false);
+  			info.setText("<html>15% для иностранца не имеющего особого статуса, но являющегося резидентом РФ</html>");
+  			int_rad=15;
+  			rad13.setEnabled(true);
+      		rad15.setEnabled(false);
+      		rad30.setEnabled(true);
+          }
+      });
+		
+		rad30.addActionListener(new ActionListener()
+      { public void actionPerformed(ActionEvent e)
+          {
+  			rad13.setSelected(false);
+  			rad15.setSelected(false);
+  			info.setText("<html>30% для иностранца не являющимся резидентом РФ</html>");
+  			int_rad=30;
+  			rad13.setEnabled(true);
+      		rad15.setEnabled(true);
+      		rad30.setEnabled(false);
+          }
+      });
+		
+		liv.setSelected(true);
+		liv.setEnabled(false);
+		liv.addActionListener(new ActionListener()
+      { public void actionPerformed(ActionEvent e)
+          {
+  			unliv.setSelected(false);
+  			liv.setEnabled(false);
+  			unliv.setEnabled(true);
+  			rad13.setEnabled(false);
+  			rad15.setEnabled(true);
+  			rad30.setEnabled(true);
+  			rad13.setSelected(true);
+  			rad15.setSelected(false);
+  			rad30.setSelected(false);
+  			info.setText("<html>13% для резидента</html>");
+      		int_rad=13;
+          }
+      });
+		
+		unliv.addActionListener(new ActionListener()
+      { public void actionPerformed(ActionEvent e)
+          {
+  			liv.setSelected(false);
+  			liv.setEnabled(true);
+  			unliv.setEnabled(false);
+  			rad13.setEnabled(false);
+  			rad15.setEnabled(false);
+  			rad30.setEnabled(false);
+  			int_rad=6;
+  			info.setText("<html>6% для нежилого помещения</html>");
+          }
+      });
+		
+		String optiont = ("Кол-во просроченных дней");
+		option.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (optionp) {
+					optionp=false;
+      			dfield.setFocusable(true);
+      			dfield.setText(optiont);
+      			dfield.setBackground(Color.WHITE);
+      			dfield.setFont(font1);
+				} else {
+					optionp=true;
+      			dfield.setFocusable(false);
+      			dfield.setText("");
+      			dfield.setBackground(new Color(238, 238, 238));
+				}
+          }
+      });
+		
+		dfield.addFocusListener(new FocusAdapter() {
+	        @Override
+	        public void focusGained(FocusEvent e) {
+	            if (dfield.getText().equals(optiont)) {
+	            	dfield.setText("");
+	            	dfield.setFont(font2);
+	            }
+	        }
+	        @Override
+	        public void focusLost(FocusEvent e) {
+	            if (dfield.getText().isEmpty()) {
+	            	dfield.setText(optiont);
+	            	dfield.setFont(font1);
+	            }
+	        }
+	    });
+		
+		String hintmainsum = "Сумма оклада, руб";
+		mainsum.addFocusListener(new FocusAdapter() {
+	        @Override
+	        public void focusGained(FocusEvent e) {
+	            if (mainsum.getText().equals(hintmainsum)) {
+	            	mainsum.setText("");
+	            }
+	        }
+	        @Override
+	        public void focusLost(FocusEvent e) {
+	            if (mainsum.getText().isEmpty()) {
+	            	mainsum.setText(hintmainsum);
+	            }
+	        }
+	    });
+		
+		JDialog Dialog1 = new JDialog();
+		enter.addActionListener(new ActionListener() {                                                         
+			public void actionPerformed(ActionEvent e) {
+				check=dfield.getText();
+				data=false;
+				d_add = 0;
+				if (option.isSelected() && check.matches("[+]?\\d+")) {
+					if (Integer.parseInt(dfield.getText())<=180) {
+						data=true;
+						d_add = Double.parseDouble(dfield.getText());
+					}
+				}
+				if ((data) || !option.isSelected()) {
+					if (isValidInput(mainsum, hintmainsum)) {
+						double d_sum_ok= Double.parseDouble(mainsum.getText().replace(',','.'));
+						double d_sum_n = d_sum_ok/100*(int_rad+d_add/50);
+						double d_sum = d_sum_ok-d_sum_n;
+						String s_sum_n = String.format("%.2f", d_sum_n);
+						nalogy.setText(s_sum_n);
+						String s_sum = String.format("%.2f", d_sum);
+						ostatok.setText(s_sum);	    		
+					}
+				}
+				if (check.matches("[+]?\\d+"))
+					if (!data && option.isSelected() && Integer.parseInt(dfield.getText())<=180) JOptionPane.showMessageDialog(Dialog1, "Вы должны ввести целое неотрицательное кол-во дней", "Ошибка", JOptionPane.WARNING_MESSAGE);
+				if (option.isSelected() && check.matches("[+]?\\d+"))
+					if (Integer.parseInt(dfield.getText())>180) JOptionPane.showMessageDialog(Dialog1, "Кол-во дней не должно быть больше 180", "Ошибка", JOptionPane.WARNING_MESSAGE);
+			}   	    	                             
+		}); 
+		
+		String hintsum = "Сумма оклада, руб";
+		mainsum.addFocusListener(new FocusAdapter() {
+	        @Override
+	        public void focusGained(FocusEvent e) {
+	            if (mainsum.getText().equals(hintsum)) {
+	            	mainsum.setText("");
+	            	mainsum.setForeground(Color.BLACK);
+	            }
+	        }
+	        @Override
+	        public void focusLost(FocusEvent e) {
+	            if (mainsum.getText().isEmpty()) {
+	            	mainsum.setText(hintsum);
+	            	mainsum.setForeground(Color.GRAY);
+	            }
+	        }
+	    });
+		
+		add(panel, BorderLayout.CENTER);
+		setVisible(true);
+		enter.transferFocus(); 
+		enter.grabFocus();	
+	}
