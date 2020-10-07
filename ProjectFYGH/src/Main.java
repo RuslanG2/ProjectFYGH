@@ -4,7 +4,7 @@ import java.io.*;
 import java.io.FileNotFoundException;
 import javax.swing.*;
 import java.util.*;
-//логин и пароль в pass.txt sssss
+//меняем тут что нить
 public class Main extends JFrame {
 	/**
 	 * 
