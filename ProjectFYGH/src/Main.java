@@ -4,7 +4,7 @@ import java.io.*;
 import java.io.FileNotFoundException;
 import javax.swing.*;
 import java.util.*;
-//меняем тут что нить
+//меняем тут что нить?
 public class Main extends JFrame {
 	/**
 	 * 
